@@ -8,4 +8,10 @@ router.get('/detail/:id', controller.detalle) // añado la ruta para mostrar los
 
 router.get('/add',controller.agregar);
 router.get('/add/form',controller.agregar);
+router.post('/add/form',controller.publicar)
+
+
+
+
+
 module.exports = router //exporto router
