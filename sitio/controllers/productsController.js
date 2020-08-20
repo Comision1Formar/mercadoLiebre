@@ -36,14 +36,13 @@ module.exports = { //exporto un objeto literal con todos los metodos
             sub:sub
         })
     },
-    publicar:function(req,res){
+    publicar:function(req,res,next){
         let lastID = 1;
         dbProducts.forEach(producto=>{
             if(producto.id > lastID){
                 lastID = producto.id
             }
         })
-    
         let newProduct = {
             id:lastID + 1,
             name:req.body.name,
@@ -51,12 +50,45 @@ module.exports = { //exporto un objeto literal con todos los metodos
             discount:Number(req.body.discount),
             category:req.body.category,
             description:req.body.description,
-            image:"default-image.png"
+            image:(req.files[0])?req.files[0].filename:"default-image.png"
         }
         dbProducts.push(newProduct);
         
         fs.writeFileSync(path.join(__dirname,"..","data","productsDataBase.json"),JSON.stringify(dbProducts),'utf-8')
 
         res.redirect('/products')
+    },
+    show:function(req,res){
+        let idProducto = req.params.id;
+        let resultado = dbProducts.filter(producto=>{
+            return producto.id == idProducto
+        })
+
+        res.render('productShow',{
+            title: "Ver / Editar Producto",
+            producto:resultado[0],
+            total:dbProducts.length,
+            categorias:dbCategories
+
+        })
+    },
+    edit:function(req,res){
+        let idProducto = req.params.id;
+
+        dbProducts.forEach(producto => {
+            if (producto.id == idProducto) {
+                producto.id = Number(req.body.id);
+                producto.name = req.body.name.trim();
+                producto.price = Number(req.body.price);
+                producto.discount = Number(req.body.discount);
+                producto.category = req.body.category.trim();
+                producto.description = req.body.description.trim();
+                producto.image = (req.files[0]) ? req.files[0].filename : producto.image
+            }
+        })
+
+        fs.writeFileSync(path.join(__dirname, '../data/productsDataBase.json'), JSON.stringify(dbProducts))
+        res.redirect('/products/show/' + idProducto)
+
     }
 }
