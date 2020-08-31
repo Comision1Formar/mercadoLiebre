@@ -21,7 +21,8 @@ module.exports = { //exporto un objeto literal con todos los metodos
         res.render('index', { //renderizo en el navegador la vista index que contiene el HOME del sitio
             title: 'Mercado Liebre', //envío el objeto literal con la o las variables necesarias para renderizar de forma correcta el home
             ofertas: ofertas,
-            visitas: visitas
+            visitas: visitas,
+            css:"index.css"
         })
     },
     search: function(req, res) {

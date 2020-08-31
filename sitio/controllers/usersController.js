@@ -5,7 +5,9 @@ module.exports = {
             title: "Perfil de usuario",
             productos:dbProductos.filter(producto=>{
                 return producto.category != "visited" && producto.category != "in-sale"
-            })
+            }),
+            css:"profile.css"
+
         })
     }
 }
