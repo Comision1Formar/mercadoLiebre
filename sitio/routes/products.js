@@ -25,9 +25,9 @@ router.get('/add',controller.agregar);
 router.get('/add/form',controller.agregar);
 router.post('/add/form',upload.any(), controller.publicar);
 
-router.get('/show/:id',controller.show);
-router.put('/edit/:id',upload.any(),controller.edit);
-
+router.get('/show/:id/:flap?',controller.show);
+router.put('/edit/:id/:flap?',upload.any(),controller.edit);
+router.delete('/delete/:id',controller.eliminar);
 
 
 

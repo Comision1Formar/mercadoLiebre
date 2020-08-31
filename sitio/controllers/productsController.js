@@ -8,7 +8,7 @@ module.exports = { //exporto un objeto literal con todos los metodos
         res.render('products', {
                 title: "Todos los Productos",
                 productos: dbProducts,
-                css:"product.css"
+                css:"index.css"
             }) //muestra información de prueba
     },
     detalle: function(req, res) {
@@ -65,6 +65,21 @@ module.exports = { //exporto un objeto literal con todos los metodos
     },
     show:function(req,res){
         let idProducto = req.params.id;
+        let flap = req.params.flap;
+
+        let activeDetail;
+        let activeEdit;
+        let showDetail;
+        let showEdit;
+
+        if(flap == "show"){
+            activeDetail = "active";
+            showDetail = "show"
+        }else{
+            activeEdit = "active";
+            showEdit = "show";
+        } 
+
         let resultado = dbProducts.filter(producto=>{
             return producto.id == idProducto
         })
@@ -74,7 +89,11 @@ module.exports = { //exporto un objeto literal con todos los metodos
             producto:resultado[0],
             total:dbProducts.length,
             categorias:dbCategories,
-            css:"profile.css"
+            css:"profile.css",
+            activeDetail: activeDetail,
+            activeEdit: activeEdit,
+            showDetail:showDetail,
+            showEdit:showEdit
 
 
         })
@@ -97,5 +116,16 @@ module.exports = { //exporto un objeto literal con todos los metodos
         fs.writeFileSync(path.join(__dirname, '../data/productsDataBase.json'), JSON.stringify(dbProducts))
         res.redirect('/products/show/' + idProducto)
 
+    },
+    eliminar:function(req,res){
+        let idProducto = req.params.id;
+        dbProducts.forEach(producto=>{
+            if(producto.id == idProducto){
+                let aEliminar = dbProducts.indexOf(producto);
+                dbProducts.splice(aEliminar,1);
+            }
+        })
+        fs.writeFileSync(path.join(__dirname, '../data/productsDataBase.json'), JSON.stringify(dbProducts));
+        res.redirect('/users/profile')
     }
 }
