@@ -20,7 +20,7 @@
                   <img src="/images/logo-mercado-liebre.svg" alt="" class="w-75"/>
                 </figure>
                   <section class="mt-5">
-                    <form action="" class="text-center" method="POST">
+                    <form action="/users/login" class="text-center" method="POST">
                       <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="customCheck1" name="acepta">
                         <label class="custom-control-label" for="customCheck1">acepto las bases y condiciones</label>
@@ -44,7 +44,7 @@
                       
                       <div class="form-group col-12 col-xl-6">
                         <label for="apellido"></label>
-                        <input type="text" class="form-control" id="apellido" placeholder="apellido" name="apellido"/>
+                        <input type="text" class="form-control" id="apellido" value="<%= (typeof old != 'undefined' && old.apellido)?old.apellido:'' %>" placeholder="apellido" name="apellido"/>
                         <small class="text-danger"><%= (typeof errors != 'undefined' && errors.apellido)?errors.apellido.msg: "" %> </small>
                       </div>
 
@@ -54,7 +54,7 @@
                       
                       <div class="form-group col-12 col-xl-6">
                         <label for="email"></label>
-                        <input type="email" class="form-control" id="email" placeholder="email" name="email"/>
+                        <input type="email" class="form-control" id="email" value="<%= (typeof old != 'undefined' && old.email)?old.email:'' %>"  placeholder="email" name="email"/>
                         <small class="text-danger"><%= (typeof errors != 'undefined' && errors.email)?errors.email.msg: "" %> </small>
                       </div>
                       
