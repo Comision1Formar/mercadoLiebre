@@ -14,20 +14,25 @@ module.exports = [
     })
     .withMessage('Debes ingresar un apellido válido'),
     
-    check('email')
-    .isEmail()
-    .withMessage('Debes ingresar un email válido'),
-
     body('email')
     .custom(function(value){
-        for(let index = 0; index < dbUsuarios.length;index++){
-            if(dbUsuarios[index].email == value){
-                return false
-            }
+        console.log(value)
+
+        let usuario = dbUsuarios.filter(user=>{ //filtro la base de datos y asigno el resultado a una varaible
+            return user.email == value //aplico la condición si coincide el mail que el usuario ingresó en el imput con que está registrado
+        })
+        if(usuario == false){ 
+            return true 
+        }else{
+            return false 
         }
-        return true
+     
     })
     .withMessage('Este email ya está registrado'),
+
+    /*check('email')
+    .isEmail()
+    .withMessage('Debes ingresar un email válido'),*/
 
     check('pass')
     .isLength({

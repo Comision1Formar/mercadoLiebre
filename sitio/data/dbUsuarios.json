@@ -1,1 +1,12 @@
-[{"id":1,"nombre":"Eric","apellido":"Mena","email":"menaericdaniel@gmail.com","ciudad":"Loma Hermosa","pass":"$2b$10$tMZPhk6lhSFON2hv4JgdluDbyt/yuslmk9t/8/mNdtNEtGrOyOgu.","rol":"user"},{"id":2,"nombre":"Jorge","apellido":"Muñoz","email":"jorge@xn--muoz-hqa.com","ciudad":"Palermo","pass":"$2b$10$R6hU1tv2lBFJXdWxCaPC9ObZ6X58pT2pD8HgYIbgEbVVgRNKAnt8i","rol":"user"},{"id":3,"nombre":"Mariela","apellido":"Alvarez","email":"mariela@alvarez.com","ciudad":"Belgrano","pass":"$2b$10$c1X46cC3nDoSTo0680s.uuCAw407jLr4t7UbsCA/t3Rmc.WZPNp8q","rol":"user"},{"id":4,"nombre":"Julian","apellido":"Aquino","email":"julian@aquino.com","ciudad":"Pilar","pass":"$2b$10$nzzu73EMg/OSFMA0UZY7u.XzXTaBKXROZBefzINURPIIW6B47HDve","rol":"user"}]
+[
+    {
+        "id": 1,
+        "nombre": "Eric",
+        "apellido": "Mena",
+        "email": "menaericdaniel@gmail.com",
+        "avatar": "avatar-1599493391125.jpg",
+        "pass": "$2b$10$vYn1/fJcdJ/V5ip2TLKoRebFFHzHgRyZmdKktldP0eaTVgDxb0.4.",
+        "rol": "user"
+    }
+   
+]

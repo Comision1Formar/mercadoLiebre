@@ -8,7 +8,8 @@ module.exports = { //exporto un objeto literal con todos los metodos
         res.render('products', {
                 title: "Todos los Productos",
                 productos: dbProducts,
-                css:"index.css"
+                css:"index.css",
+                usuario:req.session.usuario
             }) //muestra información de prueba
     },
     detalle: function(req, res) {
@@ -21,7 +22,8 @@ module.exports = { //exporto un objeto literal con todos los metodos
             title: "Detalle del Producto",
             id: id,
             producto: producto[0],
-            css:"product.css"
+            css:"product.css",
+            usuario:req.session.usuario
 
         })
     },
@@ -37,7 +39,8 @@ module.exports = { //exporto un objeto literal con todos los metodos
             categorias:dbCategories,
             categoria:categoria,
             sub:sub,
-            css:"product.css"
+            css:"product.css",
+            usuario:req.session.usuario
 
         })
     },
@@ -61,7 +64,7 @@ module.exports = { //exporto un objeto literal con todos los metodos
         
         fs.writeFileSync(path.join(__dirname,"..","data","productsDataBase.json"),JSON.stringify(dbProducts),'utf-8')
 
-        res.redirect('/products')
+        res.redirect('/users/profile')
     },
     show:function(req,res){
         let idProducto = req.params.id;
@@ -93,7 +96,8 @@ module.exports = { //exporto un objeto literal con todos los metodos
             activeDetail: activeDetail,
             activeEdit: activeEdit,
             showDetail:showDetail,
-            showEdit:showEdit
+            showEdit:showEdit,
+            usuario:req.session.usuario
 
 
         })

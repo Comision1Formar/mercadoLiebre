@@ -13,7 +13,8 @@ module.exports = { //exporto un objeto literal con todos los metodos
             title: 'Mercado Liebre', //envío el objeto literal con la o las variables necesarias para renderizar de forma correcta el home
             ofertas: ofertas,
             visitas: visitas,
-            css:"index.css"
+            css:"index.css",
+            usuario:req.session.usuario
         })
     },
     search: function(req, res) {
@@ -27,7 +28,8 @@ module.exports = { //exporto un objeto literal con todos los metodos
         res.render('products', {
             title: "Resultado de la búsqueda",
             productos: productos,
-            css:"index.css"
+            css:"index.css",
+            usuario:req.session.usuario
         })
     }
 }

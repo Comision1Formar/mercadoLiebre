@@ -1,4 +1,5 @@
 const {check,validatorResult,body} = require('express-validator');
+const bcrypt = require('bcrypt');
 const dbUsuarios = require('../data/dbUsuarios');
 
 module.exports = [
@@ -21,5 +22,24 @@ module.exports = [
             return true //la valiación retorna true, es decir VALIDÓ CORRECTAMENTE
         }
     })
-    .withMessage('El usuario no está registrado') //mensaje de error
+    .withMessage('El usuario no está registrado'), //mensaje de error
+
+    body('pass')
+    .custom((value,{req})=>{
+        let result = true;
+        dbUsuarios.forEach(user => {
+            if(user.email == req.body.email){
+                if(!bcrypt.compareSync(value,user.pass)){
+                    result = false
+                }
+            }
+        });
+        if(result == false){
+            return false
+        }else{
+            return true
+        }
+    })
+    .withMessage("Contraseña incorrecta")
+
 ]
