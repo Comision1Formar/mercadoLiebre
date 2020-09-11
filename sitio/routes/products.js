@@ -11,10 +11,10 @@ router.get('/', controller.listar) //construyo la ruta que me visualizará infor
 router.get('/detail/:id', controller.detalle) // añado la ruta para mostrar los detalles del producto
 
 router.get('/add',sessionUserCheck,controller.agregar);
-router.get('/add/form',controller.agregar);
+router.get('/add/form',sessionUserCheck,controller.agregar);
 router.post('/add/form',upImageProducto.any(), controller.publicar);
 
-router.get('/show/:id/:flap?',controller.show);
+router.get('/show/:id/:flap?',sessionUserCheck,controller.show);
 router.put('/edit/:id/:flap?',upImageProducto.any(),controller.edit);
 router.delete('/delete/:id',controller.eliminar);
 

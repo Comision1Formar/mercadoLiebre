@@ -15,7 +15,15 @@ module.exports = {
     },
     processRegister:function(req,res){
        let errors = validationResult(req);
-       let lastID = dbUsuarios.length;
+       let lastID = 0;
+       if(dbUsuarios.length > 0){
+        dbUsuarios.forEach(user=>{
+            if(user.id > lastID){
+                lastID = user.id
+            }
+        })
+       }
+       
        if(errors.isEmpty()){
            let nuevoUsuario = {
                id:lastID +1,
