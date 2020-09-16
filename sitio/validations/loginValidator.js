@@ -14,8 +14,9 @@ module.exports = [
     body('email')
     .custom(function(value){
         let usuario = dbUsuarios.filter(user=>{ //filtro la base de datos y asigno el resultado a una varaible
-            return user.email == value //aplico la condición si coincide el mail que el usuario ingresó en el imput con que está registrado
+          return user.email == value //aplico la condición si coincide el mail que el usuario ingresó en el imput con que está registrado
         })
+        
         if(usuario == false){ //si no hay resultados
             return false //la validación retorna false, es decir NO PASO LA VALIDACIÓN
         }else{
